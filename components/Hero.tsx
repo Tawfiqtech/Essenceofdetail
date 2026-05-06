@@ -26,7 +26,7 @@ export default function Hero() {
           src="/hero-car.jpg"
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-right"
           priority
           sizes="100vw"
         />
