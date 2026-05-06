@@ -3,25 +3,105 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C55;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A84C99;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Typography */
+  .heading-serif {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #C9A84C 0%, #e2c97e 50%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-black font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-gold-light hover:shadow-gold-sm;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-gold text-gold font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-gold hover:text-black hover:shadow-gold-sm;
+  }
+
+  /* Cards */
+  .card-dark {
+    @apply bg-ink-card border border-ink-border rounded-none;
+  }
+
+  /* Dividers */
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.35), transparent);
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-4;
+  }
+
+  /* Shimmer on gold border */
+  .shimmer-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-border::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.12) 50%, transparent 100%);
+    background-size: 400% 100%;
+    animation: shimmer 4s infinite linear;
+    pointer-events: none;
+  }
+
+  /* Input */
+  .input-dark {
+    @apply w-full bg-ink-muted border border-ink-border text-white placeholder-gray-600 px-4 py-3.5 text-sm focus:outline-none focus:border-gold/50 transition-colors duration-200;
+  }
+
+  /* Select */
+  .select-dark {
+    @apply input-dark appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23C9A84C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
   }
 }
