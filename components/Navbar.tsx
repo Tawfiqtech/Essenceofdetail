@@ -48,9 +48,9 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="Essence of Detail"
-              width={64}
-              height={64}
-              className="h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              width={120}
+              height={120}
+              className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               priority
             />
           </a>
