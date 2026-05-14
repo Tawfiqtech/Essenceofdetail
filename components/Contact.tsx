@@ -53,15 +53,37 @@ export default function Contact() {
   }
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    if (!validate()) return
-    setStatus('loading')
-    await new Promise((r) => setTimeout(r, 1800))
-    setStatus('success')
-  }
+  e.preventDefault()
+  if (!validate()) return
+  setStatus('loading')
 
+  try {
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'form-name': 'booking',
+        ...fields,
+      }).toString(),
+    })
+    setStatus('success')
+  } catch {
+    setStatus('idle')
+    alert('Something went wrong. Please try again.')
+  }
+}
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-ink overflow-hidden">
+      {/* Required for Netlify Forms detection at build time */}
+<form name="booking" data-netlify="true" hidden>
+  <input type="text" name="name" />
+  <input type="tel" name="phone" />
+  <input type="email" name="email" />
+  <input type="text" name="vehicle" />
+  <input type="text" name="service" />
+  <input type="date" name="date" />
+  <textarea name="message" />
+</form>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.05) 0%, transparent 70%)' }}
