@@ -131,7 +131,6 @@ export default function Contact() {
               appointment. All services are mobile — we come to you.
             </motion.p>
 
-            {/* Contact details */}
             <motion.ul
               initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.22 }}
@@ -158,7 +157,6 @@ export default function Contact() {
               ))}
             </motion.ul>
 
-            {/* Promise block */}
             <motion.div
               initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
@@ -185,7 +183,6 @@ export default function Contact() {
               className="relative border border-ink-border bg-ink-card"
               style={{ boxShadow: '0 8px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.03)' }}
             >
-              {/* Gold top accent */}
               <div className="divider-gold" aria-hidden="true" />
 
               <div className="p-8 sm:p-10">
@@ -226,7 +223,6 @@ export default function Contact() {
                       <h3 className="heading-serif text-2xl text-white mb-1">Request a Booking</h3>
                       <p className="text-gray-600 text-sm font-sans mb-7">We respond within 24 hours.</p>
 
-                      {/* Grid fields */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
 
                         {/* Name */}
@@ -280,7 +276,7 @@ export default function Contact() {
                           {errors.email && <p role="alert" className="text-red-400 text-xs mt-1">{errors.email}</p>}
                         </div>
 
-                        {/* Preferred date */}
+                        {/* Preferred Date */}
                         <div>
                           <label htmlFor="date" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Preferred Date
