@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Phone, Mail, Car, CalendarDays, MessageSquare, Send, CheckCircle2, Loader2, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, Send, CheckCircle2, Loader2, MapPin } from 'lucide-react'
 
 const serviceOptions = [
   { value: '', label: 'Select a service…' },
@@ -143,8 +143,8 @@ export default function Contact() {
                 { icon: Mail,   value: 'hello@essenceofdetail.ca',      href: 'mailto:hello@essenceofdetail.ca' },
                 { icon: MapPin, value: 'Serving the Greater Vancouver Area', href: '#' },
               ].map(({ icon: Icon, value, href }) => (
-               <li key={value}>
-                  <a
+                <li key={value}>
+                  
                     href={href}
                     className="flex items-center gap-3.5 text-sm text-gray-500 hover:text-gold transition-colors duration-200 font-sans"
                   >
@@ -230,15 +230,12 @@ export default function Contact() {
                           <label htmlFor="name" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Full Name <span className="text-gold">*</span>
                           </label>
-                          <div className="relative">
-                            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none" aria-hidden="true" />
-                            <input
-                              id="name" type="text" value={fields.name} onChange={set('name')}
-                              placeholder="Jane Smith" autoComplete="name"
-                              className={`input-dark pl-10 ${errors.name ? 'border-red-500/50' : ''}`}
-                              aria-invalid={!!errors.name} aria-describedby={errors.name ? 'name-err' : undefined}
-                            />
-                          </div>
+                          <input
+                            id="name" type="text" value={fields.name} onChange={set('name')}
+                            placeholder="Jane Smith" autoComplete="name"
+                            className={`input-dark ${errors.name ? 'border-red-500/50' : ''}`}
+                            aria-invalid={!!errors.name} aria-describedby={errors.name ? 'name-err' : undefined}
+                          />
                           {errors.name && <p id="name-err" role="alert" className="text-red-400 text-xs mt-1">{errors.name}</p>}
                         </div>
 
@@ -247,15 +244,12 @@ export default function Contact() {
                           <label htmlFor="phone" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Phone <span className="text-gold">*</span>
                           </label>
-                          <div className="relative">
-                            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none" aria-hidden="true" />
-                            <input
-                              id="phone" type="tel" value={fields.phone} onChange={set('phone')}
-                              placeholder="+1 (604) 000-0000" autoComplete="tel"
-                              className={`input-dark pl-10 ${errors.phone ? 'border-red-500/50' : ''}`}
-                              aria-invalid={!!errors.phone}
-                            />
-                          </div>
+                          <input
+                            id="phone" type="tel" value={fields.phone} onChange={set('phone')}
+                            placeholder="+1 (604) 000-0000" autoComplete="tel"
+                            className={`input-dark ${errors.phone ? 'border-red-500/50' : ''}`}
+                            aria-invalid={!!errors.phone}
+                          />
                           {errors.phone && <p role="alert" className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                         </div>
 
@@ -264,15 +258,12 @@ export default function Contact() {
                           <label htmlFor="email" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Email <span className="text-gold">*</span>
                           </label>
-                          <div className="relative">
-                            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none" aria-hidden="true" />
-                            <input
-                              id="email" type="email" value={fields.email} onChange={set('email')}
-                              placeholder="you@example.com" autoComplete="email"
-                              className={`input-dark pl-10 ${errors.email ? 'border-red-500/50' : ''}`}
-                              aria-invalid={!!errors.email}
-                            />
-                          </div>
+                          <input
+                            id="email" type="email" value={fields.email} onChange={set('email')}
+                            placeholder="you@example.com" autoComplete="email"
+                            className={`input-dark ${errors.email ? 'border-red-500/50' : ''}`}
+                            aria-invalid={!!errors.email}
+                          />
                           {errors.email && <p role="alert" className="text-red-400 text-xs mt-1">{errors.email}</p>}
                         </div>
 
@@ -281,13 +272,10 @@ export default function Contact() {
                           <label htmlFor="date" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Preferred Date
                           </label>
-                          <div className="relative">
-                            <CalendarDays className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                            <input
-                              id="date" type="date" value={fields.date} onChange={set('date')}
-                              className="input-dark pl-10 [color-scheme:dark]"
-                            />
-                          </div>
+                          <input
+                            id="date" type="date" value={fields.date} onChange={set('date')}
+                            className="input-dark [color-scheme:dark]"
+                          />
                         </div>
 
                         {/* Alternative Date */}
@@ -295,13 +283,10 @@ export default function Contact() {
                           <label htmlFor="altDate" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Alternative Date
                           </label>
-                          <div className="relative">
-                            <CalendarDays className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                            <input
-                              id="altDate" type="date" value={fields.altDate} onChange={set('altDate')}
-                              className="input-dark pl-10 [color-scheme:dark]"
-                            />
-                          </div>
+                          <input
+                            id="altDate" type="date" value={fields.altDate} onChange={set('altDate')}
+                            className="input-dark [color-scheme:dark]"
+                          />
                         </div>
 
                         {/* Alternative Time */}
@@ -309,13 +294,10 @@ export default function Contact() {
                           <label htmlFor="altTime" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Alternative Time
                           </label>
-                          <div className="relative">
-                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                            <input
-                              id="altTime" type="time" value={fields.altTime} onChange={set('altTime')}
-                              className="input-dark pl-10 [color-scheme:dark]"
-                            />
-                          </div>
+                          <input
+                            id="altTime" type="time" value={fields.altTime} onChange={set('altTime')}
+                            className="input-dark [color-scheme:dark]"
+                          />
                         </div>
 
                       </div>
@@ -325,18 +307,15 @@ export default function Contact() {
                         <label htmlFor="vehicle" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Vehicle Size <span className="text-gold">*</span>
                         </label>
-                        <div className="relative">
-                          <Car className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                          <select
-                            id="vehicle" value={fields.vehicle} onChange={set('vehicle')}
-                            className={`select-dark pl-10 ${errors.vehicle ? 'border-red-500/50' : ''}`}
-                            aria-invalid={!!errors.vehicle}
-                          >
-                            {vehicleOptions.map((o) => (
-                              <option key={o.value} value={o.value} className="bg-[#1a1a1a]">{o.label}</option>
-                            ))}
-                          </select>
-                        </div>
+                        <select
+                          id="vehicle" value={fields.vehicle} onChange={set('vehicle')}
+                          className={`select-dark ${errors.vehicle ? 'border-red-500/50' : ''}`}
+                          aria-invalid={!!errors.vehicle}
+                        >
+                          {vehicleOptions.map((o) => (
+                            <option key={o.value} value={o.value} className="bg-[#1a1a1a]">{o.label}</option>
+                          ))}
+                        </select>
                         {errors.vehicle && <p role="alert" className="text-red-400 text-xs mt-1">{errors.vehicle}</p>}
                       </div>
 
@@ -345,14 +324,11 @@ export default function Contact() {
                         <label htmlFor="carModel" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Car Make / Model / Year
                         </label>
-                        <div className="relative">
-                          <Car className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                          <input
-                            id="carModel" type="text" value={fields.carModel} onChange={set('carModel')}
-                            placeholder="e.g. Toyota Camry 2021"
-                            className="input-dark pl-10"
-                          />
-                        </div>
+                        <input
+                          id="carModel" type="text" value={fields.carModel} onChange={set('carModel')}
+                          placeholder="e.g. Toyota Camry 2021"
+                          className="input-dark"
+                        />
                       </div>
 
                       {/* Service */}
@@ -360,18 +336,15 @@ export default function Contact() {
                         <label htmlFor="service" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Service <span className="text-gold">*</span>
                         </label>
-                        <div className="relative">
-                          <MessageSquare className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
-                          <select
-                            id="service" value={fields.service} onChange={set('service')}
-                            className={`select-dark pl-10 ${errors.service ? 'border-red-500/50' : ''}`}
-                            aria-invalid={!!errors.service}
-                          >
-                            {serviceOptions.map((o) => (
-                              <option key={o.value} value={o.value} className="bg-[#1a1a1a]">{o.label}</option>
-                            ))}
-                          </select>
-                        </div>
+                        <select
+                          id="service" value={fields.service} onChange={set('service')}
+                          className={`select-dark ${errors.service ? 'border-red-500/50' : ''}`}
+                          aria-invalid={!!errors.service}
+                        >
+                          {serviceOptions.map((o) => (
+                            <option key={o.value} value={o.value} className="bg-[#1a1a1a]">{o.label}</option>
+                          ))}
+                        </select>
                         {errors.service && <p role="alert" className="text-red-400 text-xs mt-1">{errors.service}</p>}
                       </div>
 
