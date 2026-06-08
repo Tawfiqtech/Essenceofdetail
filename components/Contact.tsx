@@ -79,7 +79,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-ink overflow-hidden">
-      {/* Required for Netlify Forms detection at build time */}
       <form name="booking" data-netlify="true" hidden>
         <input type="text" name="name" />
         <input type="tel" name="phone" />
@@ -102,7 +101,6 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-16 items-start">
 
-          {/* Left: info */}
           <div className="lg:sticky lg:top-28">
             <motion.p
               initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +142,7 @@ export default function Contact() {
                 { icon: MapPin, value: 'Serving the Greater Vancouver Area', href: '#' },
               ].map(({ icon: Icon, value, href }) => (
                 <li key={value}>
-                  
+                  <a
                     href={href}
                     className="flex items-center gap-3.5 text-sm text-gray-500 hover:text-gold transition-colors duration-200 font-sans"
                   >
@@ -174,7 +172,6 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Right: form */}
           <motion.div
             initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
@@ -225,7 +222,6 @@ export default function Contact() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
 
-                        {/* Name */}
                         <div>
                           <label htmlFor="name" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Full Name <span className="text-gold">*</span>
@@ -239,7 +235,6 @@ export default function Contact() {
                           {errors.name && <p id="name-err" role="alert" className="text-red-400 text-xs mt-1">{errors.name}</p>}
                         </div>
 
-                        {/* Phone */}
                         <div>
                           <label htmlFor="phone" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Phone <span className="text-gold">*</span>
@@ -253,7 +248,6 @@ export default function Contact() {
                           {errors.phone && <p role="alert" className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                         </div>
 
-                        {/* Email */}
                         <div>
                           <label htmlFor="email" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Email <span className="text-gold">*</span>
@@ -267,7 +261,6 @@ export default function Contact() {
                           {errors.email && <p role="alert" className="text-red-400 text-xs mt-1">{errors.email}</p>}
                         </div>
 
-                        {/* Preferred Date */}
                         <div>
                           <label htmlFor="date" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Preferred Date
@@ -278,7 +271,6 @@ export default function Contact() {
                           />
                         </div>
 
-                        {/* Alternative Date */}
                         <div>
                           <label htmlFor="altDate" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Alternative Date
@@ -289,7 +281,6 @@ export default function Contact() {
                           />
                         </div>
 
-                        {/* Alternative Time */}
                         <div>
                           <label htmlFor="altTime" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                             Alternative Time
@@ -302,7 +293,6 @@ export default function Contact() {
 
                       </div>
 
-                      {/* Vehicle Size */}
                       <div className="mb-4">
                         <label htmlFor="vehicle" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Vehicle Size <span className="text-gold">*</span>
@@ -319,7 +309,6 @@ export default function Contact() {
                         {errors.vehicle && <p role="alert" className="text-red-400 text-xs mt-1">{errors.vehicle}</p>}
                       </div>
 
-                      {/* Car Make/Model/Year */}
                       <div className="mb-4">
                         <label htmlFor="carModel" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Car Make / Model / Year
@@ -331,7 +320,6 @@ export default function Contact() {
                         />
                       </div>
 
-                      {/* Service */}
                       <div className="mb-4">
                         <label htmlFor="service" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Service <span className="text-gold">*</span>
@@ -348,7 +336,6 @@ export default function Contact() {
                         {errors.service && <p role="alert" className="text-red-400 text-xs mt-1">{errors.service}</p>}
                       </div>
 
-                      {/* Message */}
                       <div className="mb-7">
                         <label htmlFor="message" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Additional Notes
@@ -361,7 +348,6 @@ export default function Contact() {
                         />
                       </div>
 
-                      {/* Submit */}
                       <button
                         type="submit"
                         disabled={status === 'loading'}
