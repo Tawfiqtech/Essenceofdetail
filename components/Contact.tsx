@@ -143,8 +143,8 @@ export default function Contact() {
                 { icon: Mail,   value: 'hello@essenceofdetail.ca',      href: 'mailto:hello@essenceofdetail.ca' },
                 { icon: MapPin, value: 'Serving the Greater Vancouver Area', href: '#' },
               ].map(({ icon: Icon, value, href }) => (
-                <li key={value}>
-                  
+               <li key={value}>
+                  <a
                     href={href}
                     className="flex items-center gap-3.5 text-sm text-gray-500 hover:text-gold transition-colors duration-200 font-sans"
                   >
