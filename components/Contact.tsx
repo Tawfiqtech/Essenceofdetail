@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Phone, Mail, Car, CalendarDays, MessageSquare, Send, CheckCircle2, Loader2, MapPin } from 'lucide-react'
+import { User, Phone, Mail, Car, CalendarDays, MessageSquare, Send, CheckCircle2, Loader2, MapPin, Clock } from 'lucide-react'
 
 const serviceOptions = [
   { value: '', label: 'Select a service…' },
@@ -25,12 +25,16 @@ const vehicleOptions = [
 
 type Fields = {
   name: string; phone: string; email: string;
-  vehicle: string; service: string; date: string; message: string
+  vehicle: string; carModel: string; service: string;
+  date: string; altDate: string; altTime: string; message: string
 }
 type Errors = Partial<Record<keyof Fields, string>>
 type Status = 'idle' | 'loading' | 'success'
 
-const EMPTY: Fields = { name: '', phone: '', email: '', vehicle: '', service: '', date: '', message: '' }
+const EMPTY: Fields = {
+  name: '', phone: '', email: '', vehicle: '', carModel: '',
+  service: '', date: '', altDate: '', altTime: '', message: ''
+}
 
 export default function Contact() {
   const [fields, setFields] = useState<Fields>(EMPTY)
@@ -53,37 +57,42 @@ export default function Contact() {
   }
 
   const handleSubmit = async (e: FormEvent) => {
-  e.preventDefault()
-  if (!validate()) return
-  setStatus('loading')
+    e.preventDefault()
+    if (!validate()) return
+    setStatus('loading')
 
-  try {
-    await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        'form-name': 'booking',
-        ...fields,
-      }).toString(),
-    })
-    setStatus('success')
-  } catch {
-    setStatus('idle')
-    alert('Something went wrong. Please try again.')
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'booking',
+          ...fields,
+        }).toString(),
+      })
+      setStatus('success')
+    } catch {
+      setStatus('idle')
+      alert('Something went wrong. Please try again.')
+    }
   }
-}
+
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-ink overflow-hidden">
       {/* Required for Netlify Forms detection at build time */}
-<form name="booking" data-netlify="true" hidden>
-  <input type="text" name="name" />
-  <input type="tel" name="phone" />
-  <input type="email" name="email" />
-  <input type="text" name="vehicle" />
-  <input type="text" name="service" />
-  <input type="date" name="date" />
-  <textarea name="message" />
-</form>
+      <form name="booking" data-netlify="true" hidden>
+        <input type="text" name="name" />
+        <input type="tel" name="phone" />
+        <input type="email" name="email" />
+        <input type="text" name="vehicle" />
+        <input type="text" name="carModel" />
+        <input type="text" name="service" />
+        <input type="date" name="date" />
+        <input type="date" name="altDate" />
+        <input type="time" name="altTime" />
+        <textarea name="message" />
+      </form>
+
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.05) 0%, transparent 70%)' }}
@@ -136,7 +145,7 @@ export default function Contact() {
                 { icon: MapPin, value: 'Serving the Greater Vancouver Area', href: '#' },
               ].map(({ icon: Icon, value, href }) => (
                 <li key={value}>
-                  <a
+                  
                     href={href}
                     className="flex items-center gap-3.5 text-sm text-gray-500 hover:text-gold transition-colors duration-200 font-sans"
                   >
@@ -284,9 +293,38 @@ export default function Contact() {
                             />
                           </div>
                         </div>
+
+                        {/* Alternative Date */}
+                        <div>
+                          <label htmlFor="altDate" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
+                            Alternative Date
+                          </label>
+                          <div className="relative">
+                            <CalendarDays className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
+                            <input
+                              id="altDate" type="date" value={fields.altDate} onChange={set('altDate')}
+                              className="input-dark pl-10 [color-scheme:dark]"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Alternative Time */}
+                        <div>
+                          <label htmlFor="altTime" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
+                            Alternative Time
+                          </label>
+                          <div className="relative">
+                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
+                            <input
+                              id="altTime" type="time" value={fields.altTime} onChange={set('altTime')}
+                              className="input-dark pl-10 [color-scheme:dark]"
+                            />
+                          </div>
+                        </div>
+
                       </div>
 
-                      {/* Vehicle */}
+                      {/* Vehicle Size */}
                       <div className="mb-4">
                         <label htmlFor="vehicle" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
                           Vehicle Size <span className="text-gold">*</span>
@@ -304,6 +342,21 @@ export default function Contact() {
                           </select>
                         </div>
                         {errors.vehicle && <p role="alert" className="text-red-400 text-xs mt-1">{errors.vehicle}</p>}
+                      </div>
+
+                      {/* Car Make/Model/Year */}
+                      <div className="mb-4">
+                        <label htmlFor="carModel" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
+                          Car Make / Model / Year
+                        </label>
+                        <div className="relative">
+                          <Car className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-600 pointer-events-none z-10" aria-hidden="true" />
+                          <input
+                            id="carModel" type="text" value={fields.carModel} onChange={set('carModel')}
+                            placeholder="e.g. Toyota Camry 2021"
+                            className="input-dark pl-10"
+                          />
+                        </div>
                       </div>
 
                       {/* Service */}
