@@ -26,14 +26,14 @@ const vehicleOptions = [
 type Fields = {
   name: string; phone: string; email: string;
   vehicle: string; carModel: string; service: string;
-  date: string; altDate: string; altTime: string; message: string
+  date: string; preferredTime: string; altDate: string; altTime: string; message: string
 }
 type Errors = Partial<Record<keyof Fields, string>>
 type Status = 'idle' | 'loading' | 'success'
 
 const EMPTY: Fields = {
   name: '', phone: '', email: '', vehicle: '', carModel: '',
-  service: '', date: '', altDate: '', altTime: '', message: ''
+  service: '', date: '', preferredTime: '', altDate: '', altTime: '', message: ''
 }
 
 export default function Contact() {
@@ -87,6 +87,7 @@ export default function Contact() {
         <input type="text" name="carModel" />
         <input type="text" name="service" />
         <input type="date" name="date" />
+        <input type="time" name="preferredTime" />
         <input type="date" name="altDate" />
         <input type="time" name="altTime" />
         <textarea name="message" />
@@ -267,6 +268,16 @@ export default function Contact() {
                           </label>
                           <input
                             id="date" type="date" value={fields.date} onChange={set('date')}
+                            className="input-dark [color-scheme:dark]"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="preferredTime" className="block text-[11px] text-gray-500 uppercase tracking-widest font-sans mb-1.5">
+                            Preferred Time
+                          </label>
+                          <input
+                            id="preferredTime" type="time" value={fields.preferredTime} onChange={set('preferredTime')}
                             className="input-dark [color-scheme:dark]"
                           />
                         </div>
